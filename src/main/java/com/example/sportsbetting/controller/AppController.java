@@ -24,4 +24,9 @@ public class AppController {
     public String events() {
         return "events";
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
