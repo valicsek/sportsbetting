@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PlayerService {
@@ -15,11 +16,17 @@ public class PlayerService {
     public void add(Player player) {
         repository.save(player);
     }
-    public void delete(long id) {
+
+    public void delete(int id) {
         repository.deleteById(id);
     }
+
     public List<Player> getPlayers() {
         return (List<Player>) repository.findAll();
     }
 
+    public Player getPlayerById(int id) {
+        Optional<Player> optionalPlayer = repository.findById(id);
+        return optionalPlayer.orElseThrow();
+    }
 }

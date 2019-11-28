@@ -30,7 +30,16 @@
                 <tbody>
                 <c:forEach items="${wagers}" var="wager">
                     <tr>
-                        <td>${wager}</td>
+                        <td></td>
+                        <td>#</td>
+                        <td>Event Title</td>
+                        <td>Event Type</td>
+                        <td>Bet Type</td>
+                        <td>Outcome value</td>
+                        <td>Outcome odd</td>
+                        <td>${wager.getAmount()}</td>
+                        <td>${wager.isWin()}</td>
+                        <td>${wager.isProcessed()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
