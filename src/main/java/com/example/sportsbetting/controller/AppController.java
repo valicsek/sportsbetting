@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("")
 public class AppController {
-    @RequestMapping("/")
+
+    @RequestMapping("")
     public String index(Model model) {
         List wagers = new ArrayList();
         wagers.add("Almafa");
@@ -18,15 +20,5 @@ public class AppController {
 
         model.addAttribute("wagers", wagers);
         return "index";
-    }
-
-    @RequestMapping("/events")
-    public String events() {
-        return "events";
-    }
-
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
     }
 }
