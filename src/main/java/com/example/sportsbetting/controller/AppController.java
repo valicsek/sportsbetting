@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppController {
     @RequestMapping("/")
     public String index() {
-        return "index.jsp";
+        return "index";
     }
 
     @RequestMapping("/events")
     public String events() {
-        return "events.jsp";
+        return "events";
     }
 }
