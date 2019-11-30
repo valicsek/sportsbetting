@@ -4,7 +4,6 @@ import com.example.sportsbetting.database.model.Player;
 import com.example.sportsbetting.database.repository.IPlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,15 +15,12 @@ public class PlayerService {
     public void add(Player player) {
         repository.save(player);
     }
-
     public void delete(int id) {
         repository.deleteById(id);
     }
-
     public List<Player> getPlayers() {
         return (List<Player>) repository.findAll();
     }
-
     public Player getPlayerById(int id) {
         Optional<Player> optionalPlayer = repository.findById(id);
         return optionalPlayer.orElseThrow();

@@ -4,7 +4,6 @@ import com.example.sportsbetting.database.model.Outcome;
 import com.example.sportsbetting.database.repository.IOutcomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -15,10 +14,10 @@ public class OutComeService {
     public void add(Outcome outcome) {
         repository.save(outcome);
     }
-    public void delete(long id) {
+    public void delete(int id) {
         repository.deleteById(id);
     }
-    public List<Outcome> getBets() {
+    public List<Outcome> getOutcomes() {
         return (List<Outcome>) repository.findAll();
     }
 }

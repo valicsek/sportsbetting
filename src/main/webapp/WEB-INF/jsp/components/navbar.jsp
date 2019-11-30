@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="#">Sportsbetting</a>
+        <a class="navbar-brand" href="<c:url value='/' />">Sportsbetting</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,7 +24,9 @@
                     </div>
                 </li>
             </ul>
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Login</button>
+            <form  action="<c:url value='/logout' />" method="POST">
+                <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="Logout"/>
+            </form>
         </div>
     </div>
 </nav>

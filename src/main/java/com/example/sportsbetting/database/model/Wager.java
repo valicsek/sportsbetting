@@ -28,39 +28,35 @@ public class Wager {
     private OutcomeOdd odd;
 
     @OneToOne()
-    private Player player;
+    private User player;
 
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
+    public int getId() {
+        return Id;
+    }
     public BigDecimal getAmount() {
         return amount;
     }
-
     public LocalDateTime getTimeStampCreated() {
         return timeStampCreated;
     }
-
     public boolean isProcessed() {
         return processed;
     }
-
     public boolean isWin() {
         return win;
     }
-
     public OutcomeOdd getOdd() {
         return odd;
     }
-
-    public Player getPlayer() {
+    public User getPlayer() {
         return player;
     }
-
     public Currency getCurrency() {
         return currency;
     }
-
 
     public static class Builder {
 
@@ -69,7 +65,7 @@ public class Wager {
         private boolean processed;
         private boolean win;
         private OutcomeOdd odd;
-        private Player player;
+        private User player;
         private Currency currency;
 
         public Builder setAmount(BigDecimal amount) {
@@ -97,8 +93,8 @@ public class Wager {
             return this;
         }
 
-        public Builder setPlayer(Player player) {
-            this.player = player;
+        public Builder setPlayer(User user) {
+            this.player = user;
             return this;
         }
 
@@ -108,7 +104,7 @@ public class Wager {
         }
 
 
-        public Wager build () {
+        public Wager build() {
 
             Wager wager = new Wager();
             wager.amount = this.amount;

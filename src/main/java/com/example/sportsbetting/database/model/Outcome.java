@@ -9,7 +9,7 @@ public class Outcome {
 
     @Id
     @GeneratedValue
-    private int Id;
+    private int id;
 
     @Column(name = "description")
     private String description;
@@ -19,4 +19,45 @@ public class Outcome {
 
     @OneToMany()
     private List<OutcomeOdd> outcomeOdds;
+
+    public int getId() {
+        return id;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public Bet getBet() {
+        return bet;
+    }
+    public List<OutcomeOdd> getOutcomeOdds() {
+        return outcomeOdds;
+    }
+
+    public static class Builder {
+        private String description;
+        private Bet bet;
+        private List<OutcomeOdd> outcomeOdds;
+
+        public Builder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+        public Builder setBet(Bet bet) {
+            this.bet = bet;
+            return this;
+        }
+        public Builder setOutcomeOdds(List<OutcomeOdd> outcomeOdds) {
+            this.outcomeOdds = outcomeOdds;
+            return this;
+        }
+
+        public Outcome build() {
+            Outcome outcome = new Outcome();
+            outcome.description = this.description;
+            outcome.bet = this.bet;
+            outcome.outcomeOdds = this.outcomeOdds;
+
+            return outcome;
+        }
+    }
 }

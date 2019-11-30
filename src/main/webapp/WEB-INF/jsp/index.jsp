@@ -6,7 +6,11 @@
 <div class="container">
     
     <jsp:include page="page/account_details.jsp">
-        <jsp:param name="firstname" value="Something" />
+        <jsp:param name="name" value="${player.getName()}" />
+        <jsp:param name="birth" value="${player.getBirth()}" />
+        <jsp:param name="account_number" value="${player.getAccountNumber()}" />
+        <jsp:param name="currency" value="${player.getCurrency()}" />
+        <jsp:param name="balance" value="${player.getBalance()}" />
     </jsp:include>
 
     <div class="card">

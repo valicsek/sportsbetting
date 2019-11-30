@@ -1,28 +1,31 @@
 package com.example.sportsbetting.database.model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
-public class User {
+@Inheritance
+public abstract class User {
+
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int Id;
+    private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name ="email")
+    protected String email;
 
-    @Column(name = "accountNumber")
-    private Integer accountNumber;
+    @Column(name = "password")
+    protected String password;
 
-    @Column(name = "balance")
-    private BigDecimal balance;
+    public int getId() {
+        return id;
+    }
 
-    @Column(name = "birth", columnDefinition = "DATE")
-    private LocalDate birth;
+    public String getEmail() {
+        return email;
+    }
 
-    @Enumerated(EnumType.STRING)
-    private Currency currency;
+    public String getPassword() {
+        return password;
+    }
 }

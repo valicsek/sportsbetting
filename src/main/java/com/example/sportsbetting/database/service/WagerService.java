@@ -4,7 +4,6 @@ import com.example.sportsbetting.database.model.Wager;
 import com.example.sportsbetting.database.repository.IWagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -15,10 +14,10 @@ public class WagerService {
     public void add(Wager wager) {
         repository.save(wager);
     }
-    public void delete(long id) {
+    public void delete(int id) {
         repository.deleteById(id);
     }
-    public List<Wager> getBets() {
+    public List<Wager> getWagers() {
         return (List<Wager>) repository.findAll();
     }
 }

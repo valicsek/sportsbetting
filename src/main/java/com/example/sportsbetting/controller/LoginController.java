@@ -3,22 +3,61 @@ package com.example.sportsbetting.controller;
 import com.example.sportsbetting.database.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("login")
 public class LoginController {
     @Autowired
-    PlayerService service;
+    PlayerService playerService;
 
-    @RequestMapping("")
-    public String login() {
-        return "login";
+    @GetMapping(value = "")
+    public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
+                                  @RequestParam(value = "logout",	required = false) String logout) {
+
+        ModelAndView model = new ModelAndView();
+
+        if (error != null) {
+            model.addObject("error", error);
+        }
+
+        if (logout != null) {
+            model.addObject("message", "Logged out from JournalDEV successfully.");
+        }
+
+        model.setViewName("login");
+        return model;
     }
 
-    @GetMapping("/{id}")
-    public void getById(@PathVariable(required = true) long id) {
+
+    @RequestMapping("requestLogin")
+    // @PostMapping
+    // ResponseBody kinyirja valamiert
+    // @ResponseBody
+    public String requestLogin(HttpServletRequest request) {
+        request.getSession().setAttribute("USER_ID", "request");
+
+        String errorMessage = "Something went wrong.";
+        try {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+            if (username.isEmpty() || password.isEmpty()) {
+                throw new Exception("The username or password is missing");
+            } else {
+                // A POSTBAN BEALLITOTT SESSIONT VALAMIERT NEM ERI EL A GET-BOL EZERT AZ INTERCEPTOR NEM TUDJA ELDONTENI HOGY BEJELENTKEZETT-E A JUZER VAGY SEM.
+                request.getSession().setAttribute("USER_ID", "request");
+                return "login.jsp";
+            }
+        } catch (NullPointerException err) {
+            errorMessage = "The username or password property is missing";
+        }
+        catch (Exception e) {
+            errorMessage = e.getMessage();
+        }
+        return "login";
     }
 }

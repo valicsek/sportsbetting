@@ -1,5 +1,7 @@
 package com.example.sportsbetting.controller;
 
+import com.example.sportsbetting.database.model.Currency;
+import com.example.sportsbetting.database.model.Player;
 import com.example.sportsbetting.database.model.Wager;
 import com.example.sportsbetting.database.service.PlayerService;
 import com.example.sportsbetting.database.service.WagerService;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 @Controller
@@ -26,16 +30,23 @@ public class AppController {
                 .setWin(false)
                 .build();
 
-        wagerService.add(wager);
+        Player player = new Player.Builder()
+                .setEmail("asdy@gmail.com")
+                .setPassword("asd")
+                .setName("David")
+                .setAccountNumber(1)
+                .setBalance(new BigDecimal(1000))
+                .setBirth(LocalDate.of(2014, Month.JANUARY, 1))
+                .setCurrency(Currency.HUF)
+                .build();
 
-        List<Wager> wagers = wagerService.getBets();
+        // playerService.add(player);
+        // wagerService.add(wager);
+
+        List<Wager> wagers = wagerService.getWagers();
         model.addAttribute("wagers", wagers);
+        model.addAttribute("player", player);
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public Integer getById(@PathVariable(required = true) int id) {
-        // return playerService.getPlayers().size();
-        return 0;
-    }
 }
