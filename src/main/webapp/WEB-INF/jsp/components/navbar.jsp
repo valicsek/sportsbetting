@@ -1,4 +1,5 @@
 <!-- Navbar -->
+
 <nav class="navbar navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="<c:url value='/' />">Sportsbetting</a>
@@ -9,23 +10,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">
+                        <spring:message code="navbar.home"/>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/events">Events</a>
+                    <a class="nav-link" href="/events">
+                        <spring:message code="navbar.events"/>
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Language
+                        <spring:message code="navbar.language"/>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">English</a>
-                        <a class="dropdown-item" href="#">Magyar</a>
+                        <a class="dropdown-item" href="?lang=en">
+                            <spring:message code="navbar.language.english"/>
+                        </a>
+                        <a class="dropdown-item" href="?lang=hu">
+                            <spring:message code="navbar.language.hungarian"/>
+                        </a>
                     </div>
                 </li>
             </ul>
             <form  action="<c:url value='/logout' />" method="POST">
-                <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value="Logout"/>
+                <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value='<spring:message code="navbar.button.logout"/>'/>
             </form>
         </div>
     </div>

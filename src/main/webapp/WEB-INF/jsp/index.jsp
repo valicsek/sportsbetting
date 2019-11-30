@@ -4,7 +4,7 @@
 
 <!-- Main Content -->
 <div class="container">
-    
+
     <jsp:include page="page/account_details.jsp">
         <jsp:param name="name" value="${player.getName()}" />
         <jsp:param name="birth" value="${player.getBirth()}" />
@@ -14,21 +14,21 @@
     </jsp:include>
 
     <div class="card">
-        <div class="card-header">Wages</div>
+        <div class="card-header"><spring:message code="wages"/></div>
         <div class="card-body">
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">#</th>
-                    <th scope="col">Event Title</th>
-                    <th scope="col">Event Type</th>
-                    <th scope="col">Bet Type</th>
-                    <th scope="col">Outcome value</th>
-                    <th scope="col">Outcome odd</th>
-                    <th scope="col">Wager amount</th>
-                    <th scope="col">Winner</th>
-                    <th scope="col">Processed</th>
+                    <th scope="col"><spring:message code="wages.event_title"/></th>
+                    <th scope="col"><spring:message code="wages.event_type"/></th>
+                    <th scope="col"><spring:message code="wages.bet_type"/></th>
+                    <th scope="col"><spring:message code="wages.outcome_value"/></th>
+                    <th scope="col"><spring:message code="wages.outcome_odd"/></th>
+                    <th scope="col"><spring:message code="wages.amount"/></th>
+                    <th scope="col"><spring:message code="wages.winner"/></th>
+                    <th scope="col"><spring:message code="wages.processed"/><th>
                 </tr>
                 </thead>
                 <tbody>
