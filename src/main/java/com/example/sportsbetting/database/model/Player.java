@@ -1,5 +1,7 @@
 package com.example.sportsbetting.database.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -81,6 +83,8 @@ public class Player extends User {
         }
 
         public Player build() {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
             Player player = new Player();
             player.name = this.name;
             player.birth = this.birth;
@@ -88,7 +92,7 @@ public class Player extends User {
             player.currency = this.currency;
             player.balance = this.balance;
 
-            player.password = this.password;
+            player.password = encoder.encode(this.password);
             player.email = this.email;
             return player;
         }
