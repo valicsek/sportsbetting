@@ -9,11 +9,11 @@
     <div class="card card-login">
         <div class="card-header">Login</div>
         <div class="card-body">
-            <c:if test="${not empty error}"><div>${error}</div></c:if>
-            <c:if test="${not empty message}"><div>${message}</div></c:if>
+            <c:if test="${not empty param.error}"><div>${param.error}</div></c:if>
+            <c:if test="${not empty param.logout}"><div>${param.logout}</div></c:if>
             <form action="<c:url value='/login' />" method="post">
-                <input type="text" class="form-control" id="username" placeholder='<spring:message code="login.email"/>'>
-                <input type="password" class="form-control" id="password" placeholder='<spring:message code="login.password"/>'>
+                <input type="text" class="form-control" id="username" name="username" placeholder='<spring:message code="login.email"/>'>
+                <input type="password" class="form-control" id="password" name="password" placeholder='<spring:message code="login.password"/>'>
                 <input type="submit" class="btn btn-primary my-2 my-sm-0"  value='<spring:message code="login.button.sign_in"/>'/>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

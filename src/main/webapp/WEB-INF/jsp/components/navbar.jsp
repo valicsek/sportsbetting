@@ -35,6 +35,7 @@
             </ul>
             <form  action="<c:url value='/logout' />" method="POST">
                 <input class="btn btn-outline-primary my-2 my-sm-0" type="submit" value='<spring:message code="navbar.button.logout"/>'/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </form>
         </div>
     </div>
