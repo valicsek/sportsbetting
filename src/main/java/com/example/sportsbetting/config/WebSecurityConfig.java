@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Tell that we want to authorize some requests
                 .authorizeRequests()
                 // We want to authorize every requests except resources
-                .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/register").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
