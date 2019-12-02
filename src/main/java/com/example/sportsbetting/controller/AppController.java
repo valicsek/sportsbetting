@@ -1,18 +1,17 @@
 package com.example.sportsbetting.controller;
 
-import com.example.sportsbetting.database.model.Currency;
-import com.example.sportsbetting.database.model.Player;
 import com.example.sportsbetting.database.model.Wager;
 import com.example.sportsbetting.database.service.PlayerService;
 import com.example.sportsbetting.database.service.WagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @Controller
@@ -24,28 +23,18 @@ public class AppController {
     WagerService wagerService;
 
     @RequestMapping("")
-    public String index(Model model) {
+    public String index(Model model, HttpServletRequest request) {
         Wager wager = new Wager.Builder()
                 .setAmount(new BigDecimal(1000))
                 .setWin(false)
                 .build();
 
-        Player player = new Player.Builder()
-                .setEmail("asdy@gmail.com")
-                .setPassword("asd")
-                .setName("David")
-                .setAccountNumber(1)
-                .setBalance(new BigDecimal(1000))
-                .setBirth(LocalDate.of(2014, Month.JANUARY, 1))
-                .setCurrency(Currency.HUF)
-                .build();
-
-        // playerService.add(player);
-        // wagerService.add(wager);
+        String username = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        // Player player = playerService.getPlayerByEmailAddress(username);
 
         List<Wager> wagers = wagerService.getWagers();
         model.addAttribute("wagers", wagers);
-        model.addAttribute("player", player);
+        // model.addAttribute("player", player);
         return "index";
     }
 
