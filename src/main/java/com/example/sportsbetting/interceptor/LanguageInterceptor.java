@@ -7,9 +7,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  */
 public class LanguageInterceptor extends LocaleChangeInterceptor {
 
-    /*
+
     public LanguageInterceptor() {
         this.setParamName("lang");
     }
-     */
+
 }
