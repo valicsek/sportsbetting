@@ -41,6 +41,12 @@ public class Player extends User {
         return currency;
     }
 
+    public void setName(String name) { this.name = name; }
+    public void setAccountNumber(Integer accountNumber) { this.accountNumber = accountNumber; }
+    public void setBalance(BigDecimal balance) { this.balance = balance; }
+    public void setBirth(LocalDate birth) { this.birth = birth; }
+    public void setCurrency(Currency currency) { this.currency = currency; }
+
     public static class Builder {
         private String name;
         private Integer accountNumber;

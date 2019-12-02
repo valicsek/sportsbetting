@@ -15,6 +15,10 @@ public class PlayerService {
     public void add(Player player) {
         repository.save(player);
     }
+
+    public void save(Player player) {
+        repository.save(player);
+    }
     public void delete(int id) {
         repository.deleteById(id);
     }
@@ -24,5 +28,8 @@ public class PlayerService {
     public Player getPlayerById(int id) {
         Optional<Player> optionalPlayer = repository.findById(id);
         return optionalPlayer.orElseThrow();
+    }
+    public Player getPlayerByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

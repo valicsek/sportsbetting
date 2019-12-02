@@ -1,5 +1,6 @@
 package com.example.sportsbetting.controller;
 
+import com.example.sportsbetting.database.model.Player;
 import com.example.sportsbetting.database.model.Wager;
 import com.example.sportsbetting.database.service.PlayerService;
 import com.example.sportsbetting.database.service.WagerService;
@@ -30,11 +31,13 @@ public class AppController {
                 .build();
 
         String username = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        // Player player = playerService.getPlayerByEmailAddress(username);
 
+        // Request the logged in user based on email address.
+        Player player = playerService.getPlayerByEmail(username);
         List<Wager> wagers = wagerService.getWagers();
+
         model.addAttribute("wagers", wagers);
-        // model.addAttribute("player", player);
+        model.addAttribute("player", player);
         return "index";
     }
 
