@@ -1,5 +1,6 @@
 package com.example.sportsbetting.database.service;
 
+import com.example.sportsbetting.database.model.Player;
 import com.example.sportsbetting.database.model.Wager;
 import com.example.sportsbetting.database.repository.IWagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,5 @@ public class WagerService {
     public List<Wager> getWagers() {
         return (List<Wager>) repository.findAll();
     }
+    public List<Wager> getWagersByPlayer(Player player) { return repository.findByPlayer(player); }
 }

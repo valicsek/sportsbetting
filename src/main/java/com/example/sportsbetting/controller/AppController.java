@@ -25,16 +25,21 @@ public class AppController {
 
     @RequestMapping("")
     public String index(Model model, HttpServletRequest request) {
-        Wager wager = new Wager.Builder()
-                .setAmount(new BigDecimal(1000))
-                .setWin(false)
-                .build();
-
         String username = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
         // Request the logged in user based on email address.
         Player player = playerService.getPlayerByEmail(username);
-        List<Wager> wagers = wagerService.getWagers();
+
+        /*
+        Wager wager = new Wager.Builder()
+                .setAmount(new BigDecimal(1000))
+                .setWin(false)
+                .setPlayer(player)
+                .build();
+        wagerService.add(wager);
+         */
+
+        List<Wager> wagers = wagerService.getWagersByPlayer(player);
 
         model.addAttribute("wagers", wagers);
         model.addAttribute("player", player);
