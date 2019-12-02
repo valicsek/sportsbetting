@@ -8,16 +8,19 @@ import java.util.List;
 public class Outcome {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
 
     @Column(name = "description")
     private String description;
 
-    @OneToOne()
+    @OneToOne
+    @JoinColumn(name = "bet_id")
     private Bet bet;
 
-    @OneToMany()
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name = "outcomeodd_id")
     private List<OutcomeOdd> outcomeOdds;
 
     public int getId() {

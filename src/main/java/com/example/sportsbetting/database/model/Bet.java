@@ -1,6 +1,7 @@
 package com.example.sportsbetting.database.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -8,18 +9,19 @@ import java.util.List;
 public class Bet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
 
     @Column(name = "description")
     private String description;
 
-    @OneToOne()
-    @JoinColumn(name = "Person_FK")
-    private SportEvent event;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "sportevent_id")
+    private SportEvent sportEvent;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Outcome> winnerOutcomes;
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Outcome> winnerOutcomes = new ArrayList<Outcome>();
 
     @Enumerated(EnumType.STRING)
     private BetType type;
@@ -31,7 +33,7 @@ public class Bet {
         return description;
     }
     public SportEvent getEvent() {
-        return event;
+        return sportEvent;
     }
     public List<Outcome> getWinnerOutcomes() {
         return winnerOutcomes;
@@ -65,7 +67,7 @@ public class Bet {
         public Bet build() {
             Bet bet = new Bet();
             bet.description = this.description;
-            bet.event = this.event;
+            bet.sportEvent = this.event;
             bet.winnerOutcomes = this.winnerOutcomes;
             bet.type = this.type;
 

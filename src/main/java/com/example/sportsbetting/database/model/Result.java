@@ -7,10 +7,12 @@ import java.util.List;
 @Table(name = "result")
 public class Result {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
 
-    @OneToMany(targetEntity = Outcome.class)
+    @OneToMany(/*targetEntity = Outcome.class, fetch = FetchType.EAGER, cascade = {CascadeType.ALL}*/)
+    @JoinColumn(name = "outcome")
     private List<Outcome> winnerOutcomes;
 
     public int getId() {

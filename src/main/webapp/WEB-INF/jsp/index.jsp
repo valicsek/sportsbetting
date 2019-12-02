@@ -2,6 +2,9 @@
 
 <%@include file="components/navbar.jsp" %>
 
+
+<div class="advertisement"></div>
+
 <!-- Main Content -->
 <div class="container">
 
@@ -35,12 +38,16 @@
                 <c:forEach items="${wagers}" var="wager">
                     <tr>
                         <td></td>
-                        <td>#</td>
-                        <td>Event Title</td>
-                        <td>Event Type</td>
-                        <td>Bet Type</td>
-                        <td>Outcome value</td>
-                        <td>Outcome odd</td>
+                        <td>
+                            <c:if test="${!wager.isProcessed()}">
+                                <input type="button" class="btn btn-primary" value='<spring:message code="button.remove"/>'>
+                            </c:if>
+                        </td>
+                       <td>${wager.getOdd().getOutcome().getBet().getEvent().getTitle()}</td>
+                        <td>${wager.getOdd().getOutcome().getBet().getEvent().getClass().toString()}</td>
+                        <td>${wager.getOdd().getOutcome().getBet().getType().name()}</td>
+                        <td>${wager.getOdd().getValue()}</td>
+                        <td>${wager.getOdd().getOutcome()}</td>
                         <td>${wager.getAmount()}</td>
                         <td>${wager.isWin()}</td>
                         <td>${wager.isProcessed()}</td>

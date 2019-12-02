@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 public class OutcomeOdd {
         
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        @Column
         private int id;
 
         @Column(name="value")
@@ -23,7 +24,8 @@ public class OutcomeOdd {
         @Column(name="validUntil")
         private LocalDateTime validUntil;
 
-        @OneToOne()
+        @ManyToOne(cascade=CascadeType.ALL)
+        @JoinColumn(name = "outcome_id")
         private Outcome outcome;
 
         public int getId() {

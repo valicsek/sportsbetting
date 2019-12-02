@@ -2,6 +2,7 @@ package com.example.sportsbetting.database.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,23 +11,25 @@ import java.util.Set;
 public abstract class SportEvent {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sportevent_id")
+    protected int id;
 
     @Column(name = "title")
-    private String title;
+    protected String title;
 
     @Column(name = "startDate")
-    private LocalDateTime startDate;
+    protected LocalDateTime startDate;
 
     @Column(name = "endDate", columnDefinition = "TIME")
-    private LocalDateTime endDate;
+    protected LocalDateTime endDate;
 
-    @OneToMany(targetEntity = Bet.class, fetch = FetchType.EAGER)
-    private Set<Bet> bets;
+    @OneToMany(mappedBy = "sportEvent", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    protected Set<Bet> bets = new HashSet<Bet>();
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Result result;
+    @OneToOne
+    @JoinColumn(name = "result_id")
+    protected Result result;
 
     public int getId() {
         return id;
@@ -75,24 +78,22 @@ public abstract class SportEvent {
         }
         public SportEvent build(int sportEventType) {
             if(sportEventType == 0) {
-                FootballSportEvent footballSportEvent = (FootballSportEvent) new Builder()
-                        .setTitle(this.title)
-                        .setStartDate(this.startDate)
-                        .setEndDate(this.endDate)
-                        .setBets(this.bets)
-                        .setResult(this.result)
-                        .build(0);
+                FootballSportEvent footballSportEvent = new FootballSportEvent();
+                footballSportEvent.title = this.title;
+                footballSportEvent.startDate = this.startDate;
+                footballSportEvent.endDate = this.endDate;
+                footballSportEvent.bets = this.bets;
+                footballSportEvent.result = this.result;
 
                 return footballSportEvent;
             }
             else{
-                TennisSportEvent tennisSportEvent = (TennisSportEvent) new Builder()
-                        .setTitle(this.title)
-                        .setStartDate(this.startDate)
-                        .setEndDate(this.endDate)
-                        .setBets(this.bets)
-                        .setResult(this.result)
-                        .build(1);
+                TennisSportEvent tennisSportEvent = new TennisSportEvent();
+                tennisSportEvent.title = this.title;
+                tennisSportEvent.startDate = this.startDate;
+                tennisSportEvent.endDate = this.endDate;
+                tennisSportEvent.bets = this.bets;
+                tennisSportEvent.result = this.result;
 
                 return tennisSportEvent;
             }

@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 public class Wager {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int Id;
 
     @Column(name = "amount")
@@ -24,10 +25,12 @@ public class Wager {
     @Column(name = "win")
     private boolean win;
 
-    @OneToOne()
+    @OneToOne
+    @JoinColumn(name = "odd_id")
     private OutcomeOdd odd;
 
-    @OneToOne()
+    @OneToOne
+    @JoinColumn(name = "player_id")
     private User player;
 
     @Enumerated(EnumType.STRING)

@@ -1,9 +1,42 @@
 .navbar {
-    background: #333333;
+    background: #1e805e;
+}
+
+.navbar a {
+    color: #44c59c !important;
+}
+
+.navbar .btn {
+    border-color: #44c59c !important;
+    color: #44c59c !important;;
+}
+
+.btn-primary {
+    background-color: #1e805e !important;
+    border-color: #1e805e !important;
+}
+
+.advertisement {
+    height: 300px;
+    background: url('images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: opacity(0.5);
+}
+
+body {
+    background-color: #474747;
 }
 
 .card {
     margin: 2em 0em;
+    border: 1px solid #176b4f;
+    border-radius: 5px;
+}
+
+.card-header {
+    background: #1e805e;
+    color: white;
 }
 
 .card-login input {

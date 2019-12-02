@@ -1,6 +1,7 @@
 package com.example.sportsbetting.controller;
 
 import com.example.sportsbetting.database.service.PlayerService;
+import com.example.sportsbetting.initializer.DummyData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     @Autowired
     PlayerService playerService;
+
+    @Autowired
+    DummyData dummyDataService;
 
     @GetMapping(value = "")
     public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OutComeService {
+public class OutcomeService {
     @Autowired
     IOutcomeRepository repository;
 
