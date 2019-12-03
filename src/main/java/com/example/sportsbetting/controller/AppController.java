@@ -33,13 +33,25 @@ public class AppController {
         // Request the logged in user based on email address.
         Player player = playerService.getPlayerByEmail(username);
         // Generate Dummy Data for Player
-        dummyDataService.GenerateData(player);
+        // dummyDataService.GenerateData(player);
 
         List<Wager> wagers = wagerService.getWagersByPlayer(player);
 
         model.addAttribute("wagers", wagers);
         model.addAttribute("player", player);
         return "index";
+    }
+
+    @PostMapping("/removeWager")
+    @ResponseBody
+    public String removeWager(HttpServletRequest request) {
+        try {
+            String wager_id = request.getParameter("wager_id");
+            wagerService.delete(Integer.parseInt(wager_id));
+        } catch (Exception err) {
+            return "The ID is not valid!";
+        }
+        return "Deleted";
     }
 
 }
