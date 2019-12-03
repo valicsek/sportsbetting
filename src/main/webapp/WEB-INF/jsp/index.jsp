@@ -37,13 +37,13 @@
                     <tbody>
                     <c:forEach items="${wagers}" var="wager">
                         <tr>
-                            <td></td>
                             <td>
                                 <c:if test="${!wager.isProcessed()}">
                                     <input type="button" onclick="removeWager(${wager.getId()})" class="btn btn-primary" value='<spring:message code="button.remove"/>'>
                                 </c:if>
                             </td>
-                           <td>${wager.getOdd().getOutcome().getBet().getEvent().getTitle()}</td>
+                            <td>${wager.getId()}</td>
+                            <td>${wager.getOdd().getOutcome().getBet().getEvent().getTitle()}</td>
                             <td>${wager.getOdd().getOutcome().getBet().getEvent().getClass().toString()}</td>
                             <td>${wager.getOdd().getOutcome().getBet().getType().name()}</td>
                             <td>${wager.getOdd().getValue()}</td>
